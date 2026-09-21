@@ -8,7 +8,6 @@ let seconds = 60
 let timer = document.getElementById('timer');
 localStorage.removeItem("users");
 let users = JSON.parse(localStorage.getItem("users")) || [];
-let id = 1;
 
 if(users.length == 0){
     table.style.display= "none";
@@ -47,7 +46,7 @@ gender.addEventListener("change", checkfields);
 
 button.addEventListener("click", function () {
     const user = {
-        id: id,
+        id: crypto.randomUUID(),
         firstname: firstname.value,
         lastname: lastname.value,
         gender: gender.value
@@ -55,7 +54,6 @@ button.addEventListener("click", function () {
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
     displayUsers();
-    id++;
     firstname.value="";
     lastname.value="";
     gender.value="";
