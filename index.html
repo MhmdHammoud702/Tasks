@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Task 1</title>
+</head>
+<body class="container">
+    <h4>After 60 sec , all entries will be deleted: <span id="timer"></span></h4>
+    <div class="">
+        <form action="" class="form">
+            <div>
+                <label>Firstname: </label>
+                <input type="text" id="fname">
+            </div>
+            <div>
+                <label>Lastname: </label>
+                <input type="text" id="lname">
+            </div>
+            <div>
+                <label>Gender: </label>
+                <select name="" id="gender">
+                    <option value="">--select gender--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" id="button" disabled>Save</button>
+            </div>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
