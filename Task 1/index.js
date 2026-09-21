@@ -3,10 +3,16 @@ let lastname = document.getElementById("lname");
 let gender = document.getElementById("gender");
 let button = document.getElementById("button");
 const tableBody = document.getElementById("tbody");
+const table = document.getElementById("table");
 let seconds = 60
 let timer = document.getElementById('timer');
 localStorage.removeItem("users");
 let users = JSON.parse(localStorage.getItem("users")) || [];
+let id = 1;
+
+if(users.length == 0){
+    table.style.display= "none";
+}
 
 const countdown = setInterval(() => {
         seconds--;
@@ -41,6 +47,7 @@ gender.addEventListener("change", checkfields);
 
 button.addEventListener("click", function () {
     const user = {
+        id: id,
         firstname: firstname.value,
         lastname: lastname.value,
         gender: gender.value
@@ -48,6 +55,7 @@ button.addEventListener("click", function () {
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
     displayUsers();
+    id++;
     firstname.value="";
     lastname.value="";
     gender.value="";
@@ -55,6 +63,11 @@ button.addEventListener("click", function () {
 });
 
 function displayUsers() {
+    if(users.length != 0){
+        table.style.display= "table";
+    }else{
+        table.style.display= "none";
+    }
     tableBody.innerHTML = "";
 
     users.forEach((user, index) => {
