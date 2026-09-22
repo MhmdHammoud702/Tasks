@@ -8,21 +8,26 @@
 </head>
 <body class="container">
     <h4>After 60 sec , all entries will be deleted: <span id="timer"></span></h4>
+    <div style="display: flex;gap: 25px;">
+        <h4>Total Users: <span id="count"></span></h4>
+        <h4>Male: <span id="males"></span></h4>
+        <h4>Female: <span id="females"></span></h4>
+    </div>
     <div class="">
         <form action="" class="form">
             <div >
                 <label>Firstname: </label>
-                <input type="text" id="fname"><br>
-                <span class="validation" id="firstname-val">Firstname must be at least 3 characters</span>
+                <input type="text" required id="fname"><br>
+                <span class="validation" id="firstname-val"></span>
             </div>
             <div>
                 <label>Lastname: </label>
-                <input type="text" id="lname"><br>
-                <span class="validation" id="lastname-val">Lastname must be at least 3 characters</span>
+                <input type="text" required id="lname"><br>
+                <span class="validation" id="lastname-val"></span>
             </div>
             <div>
                 <label>Gender: </label>
-                <select name="" id="gender">
+                <select name="" required id="gender">
                     <option value="">--select gender--</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -32,20 +37,28 @@
                 <button type="button" id="button" disabled>Save</button>
             </div>
         </form>
+        <p id="exists" style="display: none;">User already exists.</p>
         <div id="searchblock">
             <input type="text" id="searchbox" placeholder="search for firstname, lastname , or gender....">
+            <button type="button" id="clear">Clear All</button>
+            <select id="gendersort">
+                <option value="">All Genders</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
         </div>
         <table id="table">
             <thead>
                 <tr>
                     <th id="sort-firstname">
-                        Firstname <span id="farrow">↕</span>
+                        Firstname <span id="farrow"></span>
                     </th>
                     <th id="sort-lastname">
-                        Lastname <span id="larrow">↕</span>
+                        Lastname <span id="larrow"></span>
                     </th>
-                    <th id="sort-gender">
-                        Gender <span id="garrow">↕</span>
+                    <th>
+                        Gender
                     </th>
                     <th>Action</th>
                 </tr>
@@ -53,6 +66,13 @@
             <tbody id="tbody">
             </tbody>
         </table>
+        <div id="show" style="display: flex; gap: 15px;">
+            <button id="prevPage" disabled>Previous</button>
+            <div id="paginationButtons">
+                    
+            </div>
+            <button id="nextPage" disabled>Next</button>
+        </div>
     </div>
 
     <script src="index.js"></script>
