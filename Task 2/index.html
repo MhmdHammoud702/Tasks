@@ -12,10 +12,48 @@
         <h1 class="stat">Total Countries: <span id="total"></span></h1>
         <h1 class="stat">Countries >= 5M: <span id="red"></span></h1>
         <h1 class="stat">Countries < 5M: <span id="green"></span></h1>
+        <h1 class="stat">Favorites: <span id="favo"></span></h1>
     </div>
     
-    <div style="display: flex; gap: 4px;">
-        <input type="text" id="searchBox">
+    <div style="display: flex;flex-direction: column; gap: 4px;">
+        <input type="text" id="searchBox" placeholder="search for country name ...">
+        <div class="filtersection">
+            <div>
+                <label>Minimum Population</label>
+                <input type="text" id="minimum" placeholder="e.g. 1000000">
+                <span id="minVal" style="color: red;font-size: 10px;"></span>
+            </div>
+            <div>
+                <label>Maximum Population</label>
+                <input type="text" id="maximum" placeholder="e.g. 100000000">
+                <span id="maxVal" style="color: red;font-size: 10px;"></span>
+            </div>
+            <div style="margin-bottom: 6px;">
+                <button id="applyfilter" disabled>Apply Filter</button>
+            </div>
+            <div style="margin-bottom: 6px;">
+                <button id="resetfilter">Reset</button>
+            </div>
+        </div>
+        <div class="options">
+            <div>
+                <label>Favorites only</label>
+                <input type="checkbox" id="favonly" >
+            </div>
+            <div>
+                <label>countries per page</label>
+                <select id="countriesperpage">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+            <div>
+                <button id="random">🎲 Random country</button>
+                <button id="showall" disabled>All</button>
+            </div>
+        </div>
     </div>
     <div id="loading" style="display: block;">loading ... wait a sec</div>
     <div id="table" style="display: none;">
@@ -23,6 +61,7 @@
             <th>Country Flag</th>
             <th id="name">Country Name <span id="nameArrow"></span></th>
             <th id="population">Population <span id="popArrow"></span></th>
+            <th>Action</th>
             <tbody id="tablebody">
                 
             </tbody>

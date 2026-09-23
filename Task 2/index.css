@@ -15,12 +15,19 @@ body {
     margin: 0 auto;
 }
 
+/* =========================
+   Main Heading
+========================= */
+
 h1 {
     text-align: center;
-    margin-bottom: 25px;
+    margin: 0 0 25px;
 }
 
-/* Statistics */
+/* =========================
+   Statistics
+========================= */
+
 #statistics {
     display: flex;
     gap: 15px;
@@ -46,14 +53,18 @@ h1 {
     color: #2e7d32;
 }
 
-/* Search */
+/* =========================
+   Search
+========================= */
+
 #searchBox {
     width: 100%;
-    padding: 12px;
+    padding: 12px 14px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
+    background: white;
 }
 
 #searchBox:focus {
@@ -61,12 +72,157 @@ h1 {
     border-color: #555;
 }
 
-/* Table */
+/* =========================
+   Filters
+========================= */
+
+.filtersection {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.filtersection > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.filtersection label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.filtersection input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.filtersection input:focus {
+    outline: none;
+    border-color: #555;
+}
+
+/* =========================
+   Options
+========================= */
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.options > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.options label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.options select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+    background: #555;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+#applyfilter {
+    background: #222;
+    color: white;
+}
+
+#applyfilter:hover:not(:disabled) {
+    background: #444;
+}
+
+#resetfilter {
+    background: #d9d9d9;
+    color: #222;
+}
+
+#resetfilter:hover:not(:disabled) {
+    background: #c5c5c5;
+}
+
+#random {
+    background: #333;
+}
+
+#showall {
+    background: #555;
+}
+
+/* =========================
+   Loading
+========================= */
+
+#loading {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* =========================
+   Table
+========================= */
+
 #table {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
 }
 
 table {
@@ -78,6 +234,7 @@ th {
     padding: 14px;
     text-align: left;
     background: #eee;
+    font-size: 14px;
 }
 
 td {
@@ -85,19 +242,45 @@ td {
     border-bottom: 1px solid #eee;
 }
 
+/* Countries with population >= 5M */
+
 tr.red {
-    background: #fff5f5;
+    background-color: red;
 }
+
+/* Countries with population < 5M */
 
 tr.green {
-    background: #f5fff6;
+    background-color: greenyellow;
 }
 
-tr:hover {
-    background: #f0f0f0;
+tr.red:hover {
+    background-color: #ffe0e0;
 }
 
-/* Pagination */
+tr.green:hover {
+    background-color: #dcf7e0;
+}
+
+/* Flag */
+
+td img {
+    display: block;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Favorite button */
+
+.addFav {
+    font-size: 13px;
+    padding: 7px 12px;
+}
+
+/* =========================
+   Pagination
+========================= */
+
 #pag {
     display: flex;
     justify-content: center;
@@ -108,39 +291,124 @@ tr:hover {
 
 #pag p {
     margin: 0;
+    min-width: 60px;
+    text-align: center;
     font-weight: bold;
 }
 
-button {
-    padding: 8px 18px;
-    border: none;
+/* =========================
+   Country Details Popup
+========================= */
+
+.details {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.card {
+    width: 400px;
+    max-width: 90%;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.imgDetails {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.imgDetails img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
     border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.card > div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card > div:last-of-type > div {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+#close {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
     background: #333;
     color: white;
     cursor: pointer;
 }
 
-button:hover:not(:disabled) {
+#close:hover {
     background: #555;
 }
 
-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
+/* =========================
+   Responsive
+========================= */
 
-tr.red {
-    background-color: red
-}
+@media (max-width: 700px) {
 
-tr.green {
-    background-color: greenyellow;
-}
+    body {
+        padding: 15px;
+    }
 
-#loading {
-    display: none;
-    text-align: center;
-    padding: 20px;
-    font-size: 18px;
-    font-weight: bold;
+    #statistics {
+        flex-direction: column;
+    }
+
+    .filtersection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtersection > div {
+        width: 100%;
+    }
+
+    .options {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .options > div {
+        justify-content: space-between;
+    }
+
+    #table {
+        padding: 10px;
+    }
+
+    th,
+    td {
+        padding: 9px;
+        font-size: 13px;
+    }
+
+    .card {
+        padding: 20px;
+    }
 }
