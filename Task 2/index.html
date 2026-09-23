@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Task 1</title>
+</head>
+<body id="container">
+    <h1>Countries Statistics</h1>
+    <div id="statistics">
+        <h1 class="stat">Total Countries: <span id="total"></span></h1>
+        <h1 class="stat">Countries >= 5M: <span id="red"></span></h1>
+        <h1 class="stat">Countries < 5M: <span id="green"></span></h1>
+    </div>
+    
+    <div style="display: flex; gap: 4px;">
+        <input type="text" id="searchBox">
+    </div>
+    <div id="loading" style="display: block;">loading ... wait a sec</div>
+    <div id="table" style="display: none;">
+        <table>
+            <th>Country Flag</th>
+            <th id="name">Country Name <span id="nameArrow"></span></th>
+            <th id="population">Population <span id="popArrow"></span></th>
+            <tbody id="tablebody">
+                
+            </tbody>
+        </table>
+        <div id="pag">
+            <button id="prev" disabled>Prev</button>
+            <p id="paginationBlock"></p>
+            <button id="next" disabled>Next</button> 
+        </div>
+        
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
