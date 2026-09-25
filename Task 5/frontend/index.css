@@ -1,20 +1,19 @@
-
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    padding: 40px 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fa;
-    color: #1f2937;
+html {
+    scroll-behavior: smooth;
 }
 
-.container {
+body.container {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1180px;
     margin: 0 auto;
+    padding: 40px 24px 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f6f8fb;
+    color: #172033;
 }
 
 /* =========================
@@ -22,17 +21,20 @@ body {
 ========================= */
 
 body > h4:first-child {
-    margin: 0 0 20px;
-    padding: 14px 18px;
-    background: #fff8e1;
-    border: 1px solid #f1df9a;
-    border-radius: 10px;
-    color: #6b5b00;
+    margin: 0 0 22px;
+    padding: 15px 18px;
+    background: #ffffff;
+    border: 1px solid #e4e8ef;
+    border-left: 4px solid #2563eb;
+    border-radius: 9px;
+    color: #536174;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
 }
 
 #timer {
+    color: #2563eb;
     font-weight: 700;
 }
 
@@ -41,31 +43,33 @@ body > h4:first-child {
 ========================= */
 
 body > div > div:first-of-type {
-    display: flex;
-    gap: 15px !important;
-    margin-bottom: 25px;
+    display: flex !important;
+    gap: 16px !important;
+    margin-bottom: 22px;
 }
 
 body > div > div:first-of-type h4 {
     flex: 1;
     margin: 0;
-    padding: 18px 20px;
+    padding: 20px 22px;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e4e8ef;
     border-radius: 10px;
-    font-size: 14px;
+    color: #687588;
+    font-size: 13px;
     font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
 }
 
 #count,
 #males,
 #females {
     display: block;
-    margin-top: 6px;
-    font-size: 24px;
+    margin-top: 8px;
+    color: #172033;
+    font-size: 27px;
+    line-height: 1;
     font-weight: 700;
-    color: #111827;
 }
 
 /* =========================
@@ -74,27 +78,32 @@ body > div > div:first-of-type h4 {
 
 .form {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
     align-items: start;
-    padding: 25px;
+    margin: 0;
+    padding: 26px;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e4e8ef;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
 }
 
 .form > div {
     display: flex;
     flex-direction: column;
-    gap: 7px;
     min-width: 0;
 }
 
 .form label {
+    margin-bottom: 8px;
+    color: #344054;
     font-size: 13px;
     font-weight: 600;
-    color: #374151;
+}
+
+.form br {
+    display: none;
 }
 
 /* =========================
@@ -113,37 +122,36 @@ select {
     width: 100%;
     height: 42px;
     padding: 0 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #d5dbe5;
     border-radius: 7px;
     outline: none;
     background: #ffffff;
-    color: #111827;
+    color: #172033;
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 input::placeholder {
-    color: #9ca3af;
+    color: #9aa5b5;
 }
 
 input:hover,
 select:hover {
-    border-color: #9ca3af;
+    border-color: #aeb8c6;
 }
 
 input:focus,
 select:focus {
-    border-color: #374151;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.08);
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
 }
 
-.form input {
-    min-width: 0;
-}
-
-.form select {
-    min-width: 0;
+input:disabled,
+select:disabled {
+    background: #f8fafc;
+    cursor: not-allowed;
 }
 
 /* =========================
@@ -152,9 +160,25 @@ select:focus {
 
 .validation {
     min-height: 17px;
+    margin-top: 6px;
+    color: #dc2626;
     font-size: 12px;
     line-height: 17px;
-    color: #dc2626;
+}
+
+/* =========================
+   FORM BUTTON
+========================= */
+
+.form > div:last-child {
+    min-width: 0;
+}
+
+.form button {
+    width: 100%;
+    height: 42px;
+    min-height: 42px;
+    margin-top: 21px;
 }
 
 /* =========================
@@ -164,22 +188,24 @@ select:focus {
 button {
     min-height: 40px;
     padding: 0 16px;
-    border: 1px solid #111827;
+    border: 1px solid #2563eb;
     border-radius: 7px;
-    background: #111827;
+    background: #2563eb;
     color: #ffffff;
     font-weight: 600;
     cursor: pointer;
     transition:
-        background 0.2s ease,
+        background-color 0.2s ease,
         border-color 0.2s ease,
+        box-shadow 0.2s ease,
         transform 0.1s ease,
         opacity 0.2s ease;
 }
 
 button:hover:not(:disabled) {
-    background: #374151;
-    border-color: #374151;
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.18);
 }
 
 button:active:not(:disabled) {
@@ -189,28 +215,20 @@ button:active:not(:disabled) {
 button:disabled {
     opacity: 0.45;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 /* =========================
-   SAVE BUTTON
-========================= */
-
-.form button {
-    width: 100%;
-    margin-top: 24px;
-}
-
-/* =========================
-   EXISTING USER
+   EXISTING USER MESSAGE
 ========================= */
 
 #exists {
     margin: 12px 0 0;
-    padding: 10px 13px;
-    background: #fef2f2;
-    border: 1px solid #fecaca;
+    padding: 11px 14px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
     border-radius: 7px;
-    color: #b91c1c;
+    color: #c2410c;
     font-size: 13px;
     font-weight: 600;
 }
@@ -223,11 +241,12 @@ button:disabled {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 25px 0 15px;
-    padding: 15px;
+    margin: 24px 0 16px;
+    padding: 14px;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e4e8ef;
     border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
 }
 
 #searchbox {
@@ -241,13 +260,14 @@ button:disabled {
 
 #clear {
     background: #ffffff;
-    color: #111827;
-    border-color: #d1d5db;
+    color: #344054;
+    border-color: #d5dbe5;
 }
 
 #clear:hover:not(:disabled) {
-    background: #f3f4f6;
-    border-color: #9ca3af;
+    background: #f8fafc;
+    border-color: #aeb8c6;
+    box-shadow: none;
 }
 
 /* =========================
@@ -260,13 +280,13 @@ table {
     border-collapse: separate;
     overflow: hidden;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e1e6ee;
+    border-radius: 11px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
 }
 
 thead {
-    background: #111827;
+    background: #172033;
     color: #ffffff;
 }
 
@@ -274,26 +294,29 @@ th,
 td {
     padding: 15px 18px;
     text-align: left;
-    border-bottom: 1px solid #edf0f3;
+    border-bottom: 1px solid #edf0f4;
 }
 
 th {
-    font-size: 13px;
+    color: #ffffff;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.35px;
+    text-transform: uppercase;
 }
 
 td {
+    color: #475467;
     font-size: 14px;
-    color: #374151;
 }
 
 tbody tr {
-    transition: background 0.15s ease;
+    background: #ffffff;
+    transition: background-color 0.15s ease;
 }
 
 tbody tr:hover {
-    background: #f9fafb;
+    background: #f8fafc;
 }
 
 tbody tr:last-child td {
@@ -308,17 +331,18 @@ tbody tr:last-child td {
 #sort-lastname {
     cursor: pointer;
     user-select: none;
-    transition: background 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 #sort-firstname:hover,
 #sort-lastname:hover {
-    background: #1f2937;
+    background: #243047;
 }
 
 th span {
     display: inline-block;
     margin-left: 5px;
+    font-size: 11px;
 }
 
 /* =========================
@@ -330,22 +354,24 @@ td:last-child {
 }
 
 td button {
-    min-height: 34px;
+    min-height: 33px;
     margin-right: 6px;
     padding: 0 12px;
+    border-radius: 6px;
     font-size: 12px;
 }
 
 td button:last-child {
     margin-right: 0;
     background: #ffffff;
-    color: #111827;
-    border-color: #d1d5db;
+    color: #344054;
+    border-color: #d5dbe5;
 }
 
 td button:last-child:hover:not(:disabled) {
-    background: #f3f4f6;
-    border-color: #9ca3af;
+    background: #f8fafc;
+    border-color: #aeb8c6;
+    box-shadow: none;
 }
 
 /* =========================
@@ -353,7 +379,7 @@ td button:last-child:hover:not(:disabled) {
 ========================= */
 
 #show {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     gap: 8px !important;
@@ -361,7 +387,9 @@ td button:last-child:hover:not(:disabled) {
 }
 
 #show > button {
-    min-width: 90px;
+    min-width: 88px;
+    height: 38px;
+    min-height: 38px;
 }
 
 #paginationButtons {
@@ -378,36 +406,45 @@ td button:last-child:hover:not(:disabled) {
 }
 
 /* Current page */
+
 #paginationButtons .pag {
     background: #ffffff;
-    color: #111827;
-    border-color: #111827;
+    color: #2563eb;
+    border-color: #2563eb;
     cursor: default;
+    box-shadow: none;
 }
 
 /* Other pages */
+
 #paginationButtons .pagButton {
-    background: #111827;
+    background: #2563eb;
     color: #ffffff;
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE - TABLET
 ========================= */
 
 @media (max-width: 850px) {
-    body {
-        padding: 25px 15px;
+
+    body.container {
+        padding: 28px 18px 40px;
     }
 
     .form {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
+/* =========================
+   RESPONSIVE - MOBILE
+========================= */
+
 @media (max-width: 650px) {
-    body {
-        padding: 20px 12px;
+
+    body.container {
+        padding: 20px 12px 30px;
     }
 
     body > div > div:first-of-type {
@@ -415,8 +452,13 @@ td button:last-child:hover:not(:disabled) {
         gap: 10px !important;
     }
 
+    body > div > div:first-of-type h4 {
+        padding: 16px 18px;
+    }
+
     .form {
         grid-template-columns: 1fr;
+        gap: 16px;
         padding: 20px;
     }
 
@@ -433,6 +475,7 @@ td button:last-child:hover:not(:disabled) {
     #searchblock select,
     #searchblock button {
         width: 100%;
+        min-width: 0;
     }
 
     table {
@@ -443,7 +486,7 @@ td button:last-child:hover:not(:disabled) {
 
     th,
     td {
-        padding: 12px;
+        padding: 12px 14px;
     }
 
     #show {
@@ -451,22 +494,48 @@ td button:last-child:hover:not(:disabled) {
     }
 }
 
+/* =========================
+   SMALL MOBILE
+========================= */
+
 @media (max-width: 400px) {
-    body {
-        padding: 15px 8px;
+
+    body.container {
+        padding: 15px 8px 25px;
+    }
+
+    body > h4:first-child {
+        padding: 13px 14px;
+        font-size: 12px;
     }
 
     .form {
         padding: 15px;
     }
 
-    body > h4:first-child {
-        font-size: 13px;
-    }
-
     #count,
     #males,
     #females {
-        font-size: 20px;
+        font-size: 22px;
+    }
+
+    #paginationButtons {
+        gap: 4px;
+    }
+
+    #paginationButtons button {
+        min-width: 34px;
+        height: 34px;
+        min-height: 34px;
+        padding: 0 8px;
+    }
+
+    #show > button {
+        min-width: 78px;
+        height: 36px;
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 12px;
     }
 }
+

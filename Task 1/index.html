@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Task 1</title>
+</head>
+<body class="container">
+    <h4>After 60 sec , all entries will be deleted: <span id="timer"></span></h4>
+    <div class="">
+        <form action="" class="form">
+            <div >
+                <label>Firstname: </label>
+                <input type="text" id="fname"><br>
+                <span class="validation" id="firstname-val">Firstname must be at least 3 characters</span>
+            </div>
+            <div>
+                <label>Lastname: </label>
+                <input type="text" id="lname"><br>
+                <span class="validation" id="lastname-val">Lastname must be at least 3 characters</span>
+            </div>
+            <div>
+                <label>Gender: </label>
+                <select name="" id="gender">
+                    <option value="">--select gender--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" id="button" disabled>Save</button>
+            </div>
+        </form>
+        <div id="searchblock">
+            <input type="text" id="searchbox" placeholder="search for firstname, lastname , or gender....">
+        </div>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th id="sort-firstname">
+                        Firstname <span id="farrow">↕</span>
+                    </th>
+                    <th id="sort-lastname">
+                        Lastname <span id="larrow">↕</span>
+                    </th>
+                    <th id="sort-gender">
+                        Gender <span id="garrow">↕</span>
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

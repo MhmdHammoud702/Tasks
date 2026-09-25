@@ -1,6 +1,19 @@
 import User from "../models/Users.js";
 
-export const GetUsers = async (req, res) => {
+export const GetAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({});
+    if (!users) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+export const GetUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {

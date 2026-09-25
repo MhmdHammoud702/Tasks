@@ -31,7 +31,7 @@ let selectedGender = "";
 let firstnameAsc = null;
 let lastnameAsc = null;
 
-const API_URL = "https://users-man-backend.onrender.com/Users";
+const API_URL = "http://localhost:5001/Users";
 
 table.style.display = "none";
 searchblock.style.display = "none";
@@ -48,13 +48,29 @@ const getDate = (date) => {
     return new Date(date).toISOString().split("T")[0];
 };
 
-const countdown = setInterval(() => {
+const countdown = setInterval(async() => {
     seconds--;
     timer.textContent = seconds;
 
     if (seconds <= 0) {
         users = [];
         displayUsers();
+        try {
+            const response = await fetch(API_URL, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to delete users");
+            }
+
+            users=[];
+        } catch (error) {
+            console.error("Error adding user:", error);
+        }
         timer.textContent = "60";
         seconds = 60;
     }
@@ -468,14 +484,14 @@ function displayUsers(Users = users) {
                     if (!response.ok) {
                         throw new Error("Failed to update user");
                     }
-
-                    const updated = await response.json();
-
+                    
                     const index = users.findIndex(
                         item => item._id === selectedUser._id
                     );
 
-                    users[index] = updated;
+                    if (index !== -1) {
+                        users[index] = updatedUser;
+                    }
 
                     editButton.classList.remove("save");
                     editButton.textContent = "Edit";
@@ -485,7 +501,8 @@ function displayUsers(Users = users) {
                     gender.value = "";
                     DOB.value = "";
 
-                    filterUsers();
+
+                    await getUsers();
                     checkfields();
                 } catch (error) {
                     console.error("Error updating user:", error);
@@ -493,6 +510,7 @@ function displayUsers(Users = users) {
 
                 return;
             }
+
 
             firstname.value = selectedUser.firstname;
             lastname.value = selectedUser.lastname;
