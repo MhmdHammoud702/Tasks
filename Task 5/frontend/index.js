@@ -31,7 +31,7 @@ let selectedGender = "";
 let firstnameAsc = null;
 let lastnameAsc = null;
 
-const API_URL = "http://localhost:5001/Users";
+const API_URL = "https://users-man-backend.onrender.com/Users";
 
 table.style.display = "none";
 searchblock.style.display = "none";
