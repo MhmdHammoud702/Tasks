@@ -18,7 +18,7 @@ const clear = document.getElementById("clear");
 const prevPage = document.getElementById("prevPage");
 const nextPage = document.getElementById("nextPage");
 let exists = document.getElementById("exists");
-let seconds = 60;
+let seconds = 600;
 let timer = document.getElementById("timer");
 let count = document.getElementById("count");
 let males = document.getElementById("males");
@@ -30,16 +30,22 @@ let filteredUsers = [];
 let selectedGender = "";
 let firstnameAsc = null;
 let lastnameAsc = null;
-
+let deleteSeconds = 30;
+let deleteTimer = document.getElementById("deletetimer");
+let dTimer = document.getElementById("Dtimer");
+let deleteTimeout = null;
+let deleteInterval = null;
+let deletedUsers = new Set();
 const API_URL = "https://users-man-backend.onrender.com/Users";
 
 table.style.display = "none";
 searchblock.style.display = "none";
-document.getElementById("show").style.display = "none";
+deleteTimer.style.display = "none";
 
 count.textContent = 0;
 females.textContent = 0;
 males.textContent = 0;
+document.getElementById('deletetimer').style.display="none";
 
 const normalize = (string) =>
     string.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -47,6 +53,43 @@ const normalize = (string) =>
 const getDate = (date) => {
     return new Date(date).toISOString().split("T")[0];
 };
+
+function setAllButtonsDisabled(disabled) {
+    document.querySelectorAll("button").forEach(button => {
+        button.disabled = disabled;
+    });
+}
+
+function startDeleteTimer() {
+    clearTimeout(deleteTimeout);
+    clearInterval(deleteInterval);
+
+    deleteSeconds = 30;
+
+    deleteTimer.style.display = "block";
+    dTimer.textContent = deleteSeconds;
+
+    deleteInterval = setInterval(() => {
+        deleteSeconds--;
+
+        dTimer.textContent = deleteSeconds;
+
+        if (deleteSeconds <= 0) {
+            clearInterval(deleteInterval);
+            deleteInterval = null;
+        }
+    }, 1000);
+
+    deleteTimeout = setTimeout(async () => {
+        clearInterval(deleteInterval);
+        deleteInterval = null;
+        deletedUsers.clear();
+        await getUsers();
+
+        deleteTimer.style.display = "none";
+        deleteTimeout = null;
+    }, 31 * 1000);
+}
 
 const countdown = setInterval(async() => {
     seconds--;
@@ -66,15 +109,25 @@ const countdown = setInterval(async() => {
             if (!response.ok) {
                 throw new Error("Failed to delete users");
             }
-
+            deletedUsers.clear();
             users=[];
         } catch (error) {
             console.error("Error adding user:", error);
         }
-        timer.textContent = "60";
-        seconds = 60;
+        timer.textContent = "600";
+        seconds = 600;
     }
 }, 1000);
+
+function stopDeleteTimer() {
+    clearTimeout(deleteTimeout);
+    clearInterval(deleteInterval);
+
+    deleteTimeout = null;
+    deleteInterval = null;
+
+    deleteTimer.style.display = "none";
+}
 
 function checkfields() {
     const editing = document.querySelector(".save");
@@ -270,10 +323,10 @@ button.addEventListener("click", async function () {
             throw new Error("Failed to add user");
         }
 
-        const newUser = await response.json();
-
-        users.push(newUser);
-
+        await response.json();
+        
+        await getUsers();
+        stopDeleteTimer();
         sortGender.value = "";
         selectedGender = "";
 
@@ -309,9 +362,9 @@ clear.addEventListener("click", async () => {
             throw new Error("Failed to delete all users");
         }
 
-        users = [];
-        currentPage = 1;
-        displayUsers();
+        await getUsers();
+        setAllButtonsDisabled(true);
+        startDeleteTimer();
     } catch (error) {
         console.error("Error deleting users:", error);
     }
@@ -404,6 +457,8 @@ function displayUsers(Users = users) {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
 
+        deleteButton.disabled = deletedUsers.has(user._id);
+
         deleteButton.addEventListener("click", async function () {
             const duser = users.find(
                 item => item._id === user._id
@@ -425,19 +480,9 @@ function displayUsers(Users = users) {
                     if (!response.ok) {
                         throw new Error("Failed to delete user");
                     }
-
-                    users = users.filter(
-                        item => item._id !== user._id
-                    );
-
-                    if (
-                        currentPage > 1 &&
-                        (currentPage - 1) * usersPerPage >= users.length
-                    ) {
-                        currentPage--;
-                    }
-
-                    displayUsers();
+                    deletedUsers.add(user._id)
+                    await getUsers();
+                    startDeleteTimer();
                 } catch (error) {
                     console.error("Error deleting user:", error);
                 }
@@ -448,6 +493,7 @@ function displayUsers(Users = users) {
 
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
+        editButton.disabled = deletedUsers.has(user._id);
 
         editButton.addEventListener("click", async function () {
             const editing = document.querySelector(".save");
@@ -485,13 +531,8 @@ function displayUsers(Users = users) {
                         throw new Error("Failed to update user");
                     }
                     
-                    const index = users.findIndex(
-                        item => item._id === selectedUser._id
-                    );
-
-                    if (index !== -1) {
-                        users[index] = updatedUser;
-                    }
+                    await getUsers();
+                    stopDeleteTimer();
 
                     editButton.classList.remove("save");
                     editButton.textContent = "Edit";
@@ -501,8 +542,6 @@ function displayUsers(Users = users) {
                     gender.value = "";
                     DOB.value = "";
 
-
-                    await getUsers();
                     checkfields();
                 } catch (error) {
                     console.error("Error updating user:", error);
