@@ -36,7 +36,7 @@ let dTimer = document.getElementById("Dtimer");
 let deleteTimeout = null;
 let deleteInterval = null;
 let deletedUsers = new Set();
-const API_URL = "https://users-man-backend.onrender.com/Users";
+const API_URL = "http://localhost:5001/Users";
 
 table.style.display = "none";
 searchblock.style.display = "none";
@@ -76,6 +76,7 @@ function startDeleteTimer() {
 
         if (deleteSeconds <= 0) {
             clearInterval(deleteInterval);
+            setAllButtonsDisabled(false);
             deleteInterval = null;
         }
     }, 1000);
@@ -336,7 +337,7 @@ button.addEventListener("click", async function () {
         DOB.value = "";
 
         currentPage = Math.ceil(users.length / usersPerPage);
-
+        
         filterUsers();
         checkfields();
     } catch (error) {
