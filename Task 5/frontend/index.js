@@ -36,11 +36,34 @@ let dTimer = document.getElementById("Dtimer");
 let deleteTimeout = null;
 let deleteInterval = null;
 let deletedUsers = new Set();
-const API_URL = "http://localhost:5001/Users";
+const API_URL = "http://localhost:5001";
 
 table.style.display = "none";
 searchblock.style.display = "none";
 deleteTimer.style.display = "none";
+
+async function ensureToken() {
+    try {
+        const response = await fetch(
+            `${API_URL}/api/auth/token`,
+            {
+                method: "POST",
+                credentials: "include"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Authentication failed");
+        }
+
+        console.log("Valid JWT available");
+        return true;
+
+    } catch (error) {
+        console.error("Authentication error:", error);
+        return false;
+    }
+}
 
 count.textContent = 0;
 females.textContent = 0;
@@ -100,8 +123,9 @@ const countdown = setInterval(async() => {
         users = [];
         displayUsers();
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(`${API_URL}/Users`, {
                 method: "DELETE",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -312,8 +336,9 @@ button.addEventListener("click", async function () {
     };
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(`${API_URL}/Users`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -355,7 +380,8 @@ clear.addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(`${API_URL}/Users`, {
+            credentials:"include",
             method: "DELETE"
         });
 
@@ -472,12 +498,12 @@ function displayUsers(Users = users) {
             ) {
                 try {
                     const response = await fetch(
-                        `${API_URL}/${user._id}`,
+                        `${API_URL}/Users/${user._id}`,
                         {
-                            method: "DELETE"
+                            method: "DELETE",
+                            credentials: "include"
                         }
                     );
-
                     if (!response.ok) {
                         throw new Error("Failed to delete user");
                     }
@@ -521,6 +547,7 @@ function displayUsers(Users = users) {
                         `${API_URL}/${selectedUser._id}`,
                         {
                             method: "PUT",
+                            credentials:"include",
                             headers: {
                                 "Content-Type": "application/json"
                             },
@@ -583,7 +610,9 @@ prevPage.addEventListener("click", () => {
 
 async function getUsers() {
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(`${API_URL}/Users`, {
+            credentials: "include"
+        });
 
         if (!response.ok) {
             throw new Error("Failed to get users");
@@ -597,5 +626,15 @@ async function getUsers() {
     }
 }
 
-getUsers();
+async function startApp() {
+    const authenticated = await ensureToken();
+
+    if (!authenticated) {
+        return;
+    }
+
+    await getUsers();
+}
+
+startApp();
 
