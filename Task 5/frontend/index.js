@@ -337,7 +337,7 @@ button.addEventListener("click", async function () {
         DOB.value = "";
 
         currentPage = Math.ceil(users.length / usersPerPage);
-        
+        setAllButtonsDisabled(false);
         filterUsers();
         checkfields();
     } catch (error) {
