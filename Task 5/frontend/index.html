@@ -7,7 +7,9 @@
     <title>Task 5</title>
 </head>
 <body class="container">
-    <h4>After 60 sec , all entries will be deleted: <span id="timer"></span></h4>
+    <h4>Online Users: <span id="onlineUsers"></span></h4>
+    <h4>Recent Activity: <ul id="activity"></ul></h4>
+    <h4>After 600 sec , all entries will be deleted: <span id="timer"></span></h4>
     <h4 id="deletetimer">After 30 sec , data will be updated after deleting: <span id="Dtimer"></span></h4>
     <div style="display: flex;gap: 25px;">
         <h4>Total Users: <span id="count"></span></h4>
@@ -82,7 +84,7 @@
             <button id="nextPage" disabled>Next</button>
         </div>
     </div>
-
+    <script src="http://localhost:5001/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

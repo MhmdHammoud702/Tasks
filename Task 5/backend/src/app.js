@@ -6,9 +6,10 @@ import authRouter from './routes/auth.route.js';
 import cors from "cors";
 import { protectRoute } from "../middleware/auth.middleware.js";
 import cookieParser from "cookie-parser";
+import { app, server } from "./config/socket.js";
 
 dotenv.config();
-const app = express();
+
 
 app.use(cors({
     origin: true,
@@ -20,9 +21,10 @@ app.use(cookieParser());
 
 app.use("/Users",protectRoute,userRouter);
 app.use('/api/auth/token',authRouter);
+
 connectDb()
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
       console.log(`Server running on port ${process.env.PORT}`);
     });
   })

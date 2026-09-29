@@ -37,10 +37,25 @@ let deleteTimeout = null;
 let deleteInterval = null;
 let deletedUsers = new Set();
 const API_URL = "http://localhost:5001";
+const socket = io("http://localhost:5001");
 
 table.style.display = "none";
 searchblock.style.display = "none";
 deleteTimer.style.display = "none";
+
+socket.on("onlineUsersCount", (count) => {
+    document.getElementById("onlineUsers").textContent =
+        `${count}`;
+});
+
+socket.on("activity", (activity) => {
+    document.getElementById('activity').innerHTML = "";
+    activity.forEach(element => {
+        const point = document.createElement('li');
+        point.textContent = element;
+        document.getElementById('activity').appendChild(point);
+    });
+});
 
 async function ensureToken() {
     try {
