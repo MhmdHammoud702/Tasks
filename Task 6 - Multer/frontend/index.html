@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="index.css">
+
+    <title>Students Management</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Students Management</h1>
+            <p>Manage your students</p>
+        </header>
+
+        <main>
+
+            <!-- Student Form -->
+            <section class="form-section">
+
+                <h2 id="formTitle">Add Student</h2>
+
+                <form id="studentForm">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input
+                                type="text"
+                                id="firstname"
+                                placeholder="Enter first name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                placeholder="Enter last name"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profilePic">Profile Picture</label>
+
+                        <input
+                            type="file"
+                            id="profilePic"
+                            accept="image/*"
+                        >
+
+                        <div id="imagePreviewContainer" class="image-preview-container">
+                            <img id="imagePreview" alt="Profile preview">
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+
+                        <button type="submit" class="btn-primary">
+                            Add Student
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelButton"
+                            class="btn-secondary hidden"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- Students -->
+            <section class="students-section">
+
+                <div class="students-header">
+
+                    <div>
+                        <h2>Students</h2>
+                        <span id="studentCount">0 students</span>
+                    </div>
+
+                    <div class="search-container">
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search students..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div id="studentsContainer" class="students-container">
+                    <!-- Students will be displayed here -->
+                </div>
+
+
+                <p id="noStudents" class="no-students">
+                    No students found.
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
+</html>
