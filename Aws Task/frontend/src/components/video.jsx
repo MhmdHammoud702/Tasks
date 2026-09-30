@@ -49,7 +49,9 @@ function VideoPlayer() {
       });
 
       hls.on(Hls.Events.ERROR, (event, data) => {
-        console.error("HLS ERROR:", data);
+        if (data.fatal) {
+          console.error("FATAL HLS ERROR:", data);
+        }
       });
 
       return () => {
