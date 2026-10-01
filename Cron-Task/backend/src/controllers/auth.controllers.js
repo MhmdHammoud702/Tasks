@@ -18,3 +18,19 @@ export const Login = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+export const Registor = async (req, res) => {
+    try {
+        const user = await User.create({
+            username: req.body.username,
+            email: req.body.email,
+            image: req.file ? req.file.filename : "",
+            status: "inactive",
+            lastlogin: new Date(),
+        });
+
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};

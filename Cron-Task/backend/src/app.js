@@ -6,8 +6,8 @@ import authRouter from "./routes/auth.route.js";
 import cors from 'cors';
 import "./config/cron.js"
 dotenv.config();
-
 const app = express();
+
 
 app.use(cors({
     origin: true,
@@ -17,7 +17,7 @@ app.use(cors({
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use("/users",userRouter);
-app.use('/login',authRouter)
+app.use('/auth',authRouter)
 
 connectDb()
   .then(() => {
