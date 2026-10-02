@@ -13,10 +13,10 @@ const studentSchema = new mongoose.Schema({
 
   profilePic: {
     type: String,
-    required: true,
+    required: false,
   },
 
 });
 
-const Student = mongoose.model("User", studentSchema);
+const Student = mongoose.model("Student", studentSchema);
 export default Student;

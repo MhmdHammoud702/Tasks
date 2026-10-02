@@ -1,0 +1,17 @@
+2026-10-02 12:03:14 | ERROR | 500 | Cast to ObjectId failed for value "999" (type string) at path "_id" for model "Student"
+2026-10-02 12:03:17 | ERROR | 404 | Student not found
+2026-10-02 12:03:22 | ERROR | 400 | Expected property name or '}' in JSON at position 1 (line 1 column 2)
+2026-10-02 12:03:28 | ERROR | 400 | Expected property name or '}' in JSON at position 1 (line 1 column 2)
+2026-10-02 12:03:37 | ERROR | 500 | Student validation failed: profilePic: Path `profilePic` is required.
+2026-10-02 12:03:41 | ERROR | 500 | Student validation failed: profilePic: Path `profilePic` is required.
+2026-10-02 12:03:53 | ERROR | 404 | Student not found
+2026-10-02 12:03:53 | ERROR | 500 | Cast to ObjectId failed for value "invalid" (type string) at path "_id" for model "Student"
+2026-10-02 12:46:17 | ERROR | 500 | Cast to ObjectId failed for value "124151523523525252" (type string) at path "_id" for model "Student"
+2026-10-02 12:48:37 | ERROR | 500 | Cast to ObjectId failed for value "124151523523525252" (type string) at path "_id" for model "Student"
+2026-10-02 12:49:47 | ERROR | 404 | Student not found
+2026-10-02 12:50:29 | ERROR | 404 | Student not found
+2026-10-02 12:50:30 | ERROR | 404 | Student not found
+2026-10-02 12:50:31 | ERROR | 404 | Student not found
+2026-10-02 12:50:54 | ERROR | 400 | First name and last name are required
+2026-10-02 12:53:53 | ERROR | 404 | Student not found
+2026-10-02 13:12:48 | ERROR | 400 | First name and last name are required

@@ -1,32 +1,38 @@
 import Student from "../models/Students.js";
 
-export const GetAllStudents = async (req, res) => {
+export const GetAllStudents = async (req, res, next) => {
     try {
         const students = await Student.find({});
         res.json(students);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 };
 
-export const GetStudent = async (req, res) => {
+export const GetStudent = async (req, res, next) => {
     try {
         const student = await Student.findById(req.params.id);
 
         if (!student) {
-            return res.status(404).json({
-                message: "Student not found"
-            });
+            const error = new Error("Student not found");
+            error.statusCode = 404;
+            return next(error);
         }
 
         res.json(student);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 };
 
-export const AddStudent = async (req, res) => {
+export const AddStudent = async (req, res, next) => {
     try {
+        if (!req.body.firstname || !req.body.lastname) {
+            const error = new Error("First name and last name are required");
+            error.statusCode = 400;
+            return next(error);
+        }
+
         const student = await Student.create({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -35,11 +41,11 @@ export const AddStudent = async (req, res) => {
 
         res.status(201).json(student);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        next(error);
     }
 };
 
-export const UpdateStudent = async (req, res) => {
+export const UpdateStudent = async (req, res, next) => {
     try {
         const updateData = {
             firstname: req.body.firstname,
@@ -60,36 +66,36 @@ export const UpdateStudent = async (req, res) => {
         );
 
         if (!student) {
-            return res.status(404).json({
-                message: "Student not found"
-            });
+            const error = new Error("Student not found");
+            error.statusCode = 404;
+            return next(error);
         }
 
         res.json(student);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        next(error);
     }
 };
 
-export const DeleteStudent = async (req, res) => {
+export const DeleteStudent = async (req, res, next) => {
     try {
         const student = await Student.findByIdAndDelete(req.params.id);
 
         if (!student) {
-            return res.status(404).json({
-                message: "Student not found"
-            });
+            const error = new Error("Student not found");
+            error.statusCode = 404;
+            return next(error);
         }
 
         res.json({
             message: "Student deleted successfully"
         });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 };
 
-export const DeleteAllStudents = async (req, res) => {
+export const DeleteAllStudents = async (req, res, next) => {
     try {
         await Student.deleteMany({});
 
@@ -97,6 +103,6 @@ export const DeleteAllStudents = async (req, res) => {
             message: "All students deleted successfully"
         });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 };

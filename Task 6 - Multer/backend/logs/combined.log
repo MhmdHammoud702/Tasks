@@ -1,0 +1,41 @@
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","url":"/students"},"timestamp":"2026-10-02T08:52:22.299Z"}
+{"level":"info","message":{"ip":"::ffff:127.0.0.1","method":"GET","url":"/students"},"timestamp":"2026-10-02T08:53:47.661Z"}
+2026-10-02 12:03:11 | INFO |  | {"method":"GET","url":"/students","statusCode":200}
+2026-10-02 12:03:14 | ERROR | 500 | Cast to ObjectId failed for value "999" (type string) at path "_id" for model "Student"
+2026-10-02 12:03:14 | INFO |  | {"method":"GET","url":"/students/999","statusCode":500}
+2026-10-02 12:03:17 | ERROR | 404 | Student not found
+2026-10-02 12:03:17 | INFO |  | {"method":"GET","url":"/students/507f1f77bcf86cd799439011","statusCode":404}
+2026-10-02 12:03:22 | ERROR | 400 | Expected property name or '}' in JSON at position 1 (line 1 column 2)
+2026-10-02 12:03:28 | ERROR | 400 | Expected property name or '}' in JSON at position 1 (line 1 column 2)
+2026-10-02 12:03:37 | ERROR | 500 | Student validation failed: profilePic: Path `profilePic` is required.
+2026-10-02 12:03:37 | INFO |  | {"method":"POST","url":"/students","statusCode":500}
+2026-10-02 12:03:41 | ERROR | 500 | Student validation failed: profilePic: Path `profilePic` is required.
+2026-10-02 12:03:41 | INFO |  | {"method":"POST","url":"/students","statusCode":500}
+2026-10-02 12:03:48 | INFO |  | {"method":"POST","url":"/students","statusCode":201}
+2026-10-02 12:03:53 | ERROR | 404 | Student not found
+2026-10-02 12:03:53 | INFO |  | {"method":"GET","url":"/students/507f1f77bcf86cd799439011","statusCode":404}
+2026-10-02 12:03:53 | ERROR | 500 | Cast to ObjectId failed for value "invalid" (type string) at path "_id" for model "Student"
+2026-10-02 12:03:53 | INFO |  | {"method":"GET","url":"/students/invalid","statusCode":500}
+2026-10-02 12:45:54 | INFO |  | {"method":"GET","url":"/students","statusCode":200}
+2026-10-02 12:46:17 | ERROR | 500 | Cast to ObjectId failed for value "124151523523525252" (type string) at path "_id" for model "Student"
+2026-10-02 12:46:17 | INFO |  | {"method":"GET","url":"/students/124151523523525252","statusCode":500}
+2026-10-02 12:48:37 | ERROR | 500 | Cast to ObjectId failed for value "124151523523525252" (type string) at path "_id" for model "Student"
+2026-10-02 12:48:37 | INFO |  | {"method":"GET","url":"/students/124151523523525252","statusCode":500}
+2026-10-02 12:49:47 | ERROR | 404 | Student not found
+2026-10-02 12:49:47 | INFO |  | {"method":"GET","url":"/students/507f191e810c19729de860ea","statusCode":404}
+2026-10-02 12:50:29 | ERROR | 404 | Student not found
+2026-10-02 12:50:29 | INFO |  | {"method":"GET","url":"/students/507f191e810c19729de860ea","statusCode":404}
+2026-10-02 12:50:30 | ERROR | 404 | Student not found
+2026-10-02 12:50:30 | INFO |  | {"method":"GET","url":"/students/507f191e810c19729de860ea","statusCode":404}
+2026-10-02 12:50:31 | ERROR | 404 | Student not found
+2026-10-02 12:50:31 | INFO |  | {"method":"GET","url":"/students/507f191e810c19729de860ea","statusCode":404}
+2026-10-02 12:50:37 | INFO |  | {"method":"GET","url":"/students","statusCode":200}
+2026-10-02 12:50:54 | ERROR | 400 | First name and last name are required
+2026-10-02 12:50:54 | INFO |  | {"method":"POST","url":"/students","statusCode":400}
+2026-10-02 12:53:47 | INFO |  | {"method":"GET","url":"/students","statusCode":200}
+2026-10-02 12:53:53 | ERROR | 404 | Student not found
+2026-10-02 12:53:53 | INFO |  | {"method":"GET","url":"/students/507f191e810c19729de860ea","statusCode":404}
+2026-10-02 13:12:48 | ERROR | 400 | First name and last name are required
+2026-10-02 13:12:48 | INFO | 400 | {"method":"POST","url":"/students","statusCode":400}
+2026-10-02 13:12:52 | INFO | 200 | {"method":"GET","url":"/students","statusCode":200}
+2026-10-02 13:15:14 | INFO | 200 | {"method":"DELETE","url":"/students","statusCode":200}
