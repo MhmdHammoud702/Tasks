@@ -1,0 +1,11 @@
+{
+  "port": 3000,
+  "upstreams": {
+    "students": "http://127.0.0.1:3001",
+    "courses": "http://127.0.0.1:3002"
+  },
+  "downstreams": {
+    "/students": "students",
+    "/courses": "courses"
+  }
+}
