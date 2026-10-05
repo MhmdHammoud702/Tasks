@@ -1,13 +1,11 @@
 import express from "express";
 import { connectDb } from "./config/db.js";
 import dotenv from "dotenv";
-import studentRouter from "./routes/students.route.js";
+import ordersRouter from "./routes/orders.route.js";
 import cors from 'cors';
-import loggerMiddleware from "./middleware/loggerMiddleware.js";
-import errorMiddleware from "./middleware/errorMiddleware.js";
 dotenv.config();
-
 const app = express();
+
 
 app.use(cors({
     origin: true,
@@ -15,15 +13,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use(loggerMiddleware);
-app.use("/uploads", express.static("uploads"));
-app.use("/students", studentRouter);
-app.use((req, res, next) => {
-    const error = new Error("Route not found");
-    error.statusCode = 404;
-    next(error);
-});
-app.use(errorMiddleware);
+app.use("/orders", ordersRouter);
 
 connectDb()
   .then(() => {

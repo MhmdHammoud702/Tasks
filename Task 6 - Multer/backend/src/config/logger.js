@@ -2,9 +2,9 @@ import fs from "fs";
 import winston from "winston";
 fs.mkdirSync("logs", { recursive: true });
 
-const logFormat = winston.format.printf(({ timestamp, level, message, statusCode }) => {
+const logFormat = winston.format.printf(({ timestamp, level, message, statusCode, method, url, stack }) => {
     const text = typeof message === "string" ? message : message?.message || JSON.stringify(message);
-    return `${timestamp} | ${level.toUpperCase()} | ${statusCode || message.statusCode || ""} | ${text}`;
+    return `${timestamp} | ${level.toUpperCase()} | ${statusCode || ""} | ${method || ""} ${url || ""} | ${text}${stack ? `\n${stack}` : ""}`;
 });
 
 const logger = winston.createLogger({

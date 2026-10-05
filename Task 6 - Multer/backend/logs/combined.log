@@ -41,3 +41,5 @@
 2026-10-02 13:15:14 | INFO | 200 | {"method":"DELETE","url":"/students","statusCode":200}
 2026-10-02 15:32:39 | ERROR | 400 | First name and last name are required
 2026-10-02 15:32:39 | INFO | 400 | {"method":"POST","url":"/students","statusCode":400}
+2026-10-02 15:34:36 | ERROR | 404 | Student not found
+2026-10-02 15:34:36 | INFO | 404 | {"method":"GET","url":"/students/507f191e810c19729de860ea","statusCode":404}
