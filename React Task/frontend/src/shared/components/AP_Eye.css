@@ -1,0 +1,25 @@
+.ap__eye {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.ap__eye:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.ap__eye:focus-visible {
+  outline: 2px solid #3659c9;
+  outline-offset: 2px;
+}

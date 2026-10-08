@@ -1,0 +1,70 @@
+.ap__alert-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(15 23 42 / 55%);
+}
+
+.ap__alert {
+  width: min(100%, 360px);
+  padding: 24px;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 16px 40px rgb(15 23 42 / 20%);
+}
+
+.ap__alert-logo {
+  display: block;
+  width: 96px;
+  height: 44px;
+  margin: 0 auto 16px;
+  object-fit: contain;
+}
+
+.ap__alert p {
+  margin: 0 0 20px;
+  color: #172033;
+}
+
+.ap__alert-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ap__alert-actions button {
+  min-width: 100px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 7px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ap__alert-confirm {
+  background: #3659c9;
+  color: #fff;
+}
+
+.ap__alert-confirm:hover {
+  background: #2948ad;
+}
+
+.ap__alert-cancel {
+  background: #e9edf5;
+  color: #263247;
+}
+
+.ap__alert-cancel:hover {
+  background: #dbe2ef;
+}
+
+.ap__alert-actions button:focus-visible {
+  outline: 3px solid rgb(54 89 201 / 30%);
+  outline-offset: 2px;
+}

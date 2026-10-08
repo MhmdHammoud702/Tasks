@@ -1,0 +1,83 @@
+.ap__form__parent {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background: #f4f6fb;
+}
+
+.ap__form__parent form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(15 23 42 / 8%);
+}
+
+.ap__form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.ap__form__img {
+  width: 90px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.ap__form__header h3 {
+  margin: 0 0 2px 0;
+  color: #172033;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ap__form__parent .ap__input-field {
+  width: 100%;
+}
+
+.ap__form__parent form > button[type="submit"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #3659c9;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.ap__form__parent form > button[type="submit"]:hover {
+  background: #2948ad;
+}
+
+.ap__form__parent form > button[type="submit"]:focus-visible {
+  outline: 3px solid rgb(54 89 201 / 30%);
+  outline-offset: 2px;
+}
+
+.ap__form__parent form > button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .ap__form__parent {
+    padding: 16px;
+  }
+
+  .ap__form__parent form {
+    padding: 22px;
+  }
+}

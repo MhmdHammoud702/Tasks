@@ -1,0 +1,64 @@
+.ap__input-field {
+  width: 50%;
+}
+
+.ap__input-field > label {
+  display: block;
+  margin-bottom: 6px;
+  color: #1f2937;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.ap__input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.ap__input:focus-within {
+  border-color: #3659c9;
+  box-shadow: 0 0 0 3px rgb(54 89 201 / 18%);
+}
+
+.ap__input > input {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 10px 44px 10px 12px;
+  border: 0;
+  border-radius: inherit;
+  outline: 0;
+  background: transparent;
+  color: #111827;
+  font: inherit;
+}
+
+.ap__input > input::placeholder {
+  color: #94a3b8;
+}
+
+.ap__input-hint,
+.ap__input-error {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+}
+
+.ap__input-hint {
+  color: #64748b;
+}
+
+.ap__input-error {
+  color: #b42318;
+}
+
+.ap__input--invalid {
+  border-color: #b42318;
+}
